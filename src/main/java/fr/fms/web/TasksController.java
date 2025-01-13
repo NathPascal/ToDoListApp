@@ -23,6 +23,11 @@ public class TasksController {
         return "tasks";
     }
 
-
+    @GetMapping("/newTask")
+    public String newTask(Model model){
+        Task task = new Task();
+        model.addAttribute("task", task);
+        return "newTask";
+    }
 
 }
