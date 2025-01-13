@@ -2,15 +2,23 @@ package fr.fms.web;
 
 import fr.fms.dao.TaskRepository;
 import fr.fms.entities.Task;
+import fr.fms.service.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 public class TasksController {
+
+    @Autowired
+    TasksService tasksService;
 
     @Autowired
     TaskRepository taskRepository;
@@ -23,11 +31,18 @@ public class TasksController {
         return "tasks";
     }
 
-    @GetMapping("/newTask")
-    public String newTask(Model model){
+    @GetMapping("/addNewTask")
+    public String addNewTask(Model model){
         Task task = new Task();
         model.addAttribute("task", task);
-        return "newTask";
+        return "task";
+    }
+
+    @PostMapping("/saveTask")
+    public String saveTask(Model model, @Valid Task task, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) return "task";
+        tasksService.saveTask(task);
+        return "redirect:/tasks";
     }
 
 }
