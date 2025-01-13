@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TaskService {
+public class TasksService {
     @Autowired
     private TaskRepository taskRepository;
 
@@ -19,6 +19,6 @@ public class TaskService {
     public void saveTask(Task task) {
         taskRepository.save(task);
     }
-    
+
 }
 

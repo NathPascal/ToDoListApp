@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="../static/bootstrap.min.css" th:href="@{bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Todo List</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${listTasks}">
+            <td th:text="${task.name}"></td>
+            <td th:text="${task.description}"></td>
+            <td th:text="${task.dueDate}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
