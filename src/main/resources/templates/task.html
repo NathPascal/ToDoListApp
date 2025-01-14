@@ -1,26 +1,33 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html  xmlns:th="http://thymeleaf.org"
+       lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>New Task</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Saisir une nouvelle tâche</title>
 </head>
 <body>
-    <h2>Add New Task</h2>
+    <h2>Saisir une nouvelle tâche</h2>
     <form th:action="@{/saveTask}" th:object="${task}" method="post">
         <div class ="form-group">
-            <label>Name</label>
-            <input type="text" th:field="*{name}" class="form-control"/>
+            <label class="control-panel">Intitulé</label>
+            <input type="text" name="name" th:value="${task.name}" class="form-control"/>
+            <span th:errors="${task.name}" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label>Date et heure</label>
-            <input type="datetime-local" th:field="*{dueDate}" class="form-control"/>
+            <label class="control-label">Date et heure</label>
+            <input type="datetime-local" name="dueDateTime" th:value="${task.dueDateTime}" class="form-control"/>
+            <span th:errors="${task.dueDateTime}" class="text-danger"></span>
         </div>
         <div class = "form-group">
-            <label>Description</label>
-            <input type="text" th:field="*{description}" class="form-control"/>
+            <label class="control-label">Description</label>
+            <input type="text" name="description" th:value="${task.description}" class="form-control"/>
+            <span th:errors="${task.description}" class="text-danger"></span>
         </div>
         <button type="submit" class="btn btn-primary">Sauvegarder</button>
     </form>
 
 </body>
 </html>
+
+
+

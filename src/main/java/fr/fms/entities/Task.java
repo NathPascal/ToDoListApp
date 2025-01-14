@@ -1,7 +1,11 @@
 package fr.fms.entities;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -10,8 +14,15 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
+    @Size(min=10,max=50)
+
     private String name;
+
+    @DateTimeFormat (pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime dueDateTime;
+
     private String description;
 
 
@@ -41,12 +52,12 @@ public class Task {
         this.name = name;
     }
 
-    public LocalDateTime getDueDate() {
+    public LocalDateTime getDueDateTime() {
         return dueDateTime;
     }
 
-    public void setDueDate(LocalDateTime dueDate) {
-        this.dueDateTime = dueDate;
+    public void setDueDateTime(LocalDateTime dueDateTime) {
+        this.dueDateTime = dueDateTime;
     }
 
     public String getDescription() {

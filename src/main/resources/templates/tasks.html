@@ -21,8 +21,11 @@
         <tbody>
         <tr th:each="task : ${listTasks}">
             <td th:text="${task.name}"></td>
-            <td th:text="${task.dueDate}"></td>
+            <td th:text="${task.dueDateTime}"></td>
             <td th:text="${task.description}"></td>
+            <td>
+                <a th:href="@{/delete(id=${task.id})}" class="btn btn-danger">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>
