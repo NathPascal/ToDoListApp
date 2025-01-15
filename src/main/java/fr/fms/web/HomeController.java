@@ -19,16 +19,16 @@ public class HomeController {
         List<Task> exampleTasks = new ArrayList<>();
 
         Category workCategory = new Category();
-        workCategory.setName("Work");
-        exampleTasks.add(new Task(null, "Task 1", LocalDateTime.now().plusDays(1), "Description for Task 1", workCategory));
+        workCategory.setName("Travail");
+        exampleTasks.add(new Task(null, "Rapport hebdomadaire", LocalDateTime.of(2025,2,8, 9, 0
+        ), "Rédiger et soumettre le rapport", workCategory));
 
-        Category personalCategory = new Category();
-        personalCategory.setName("Personal");
-        exampleTasks.add(new Task(null, "Task 2", LocalDateTime.now().plusDays(2), "Description for Task 2", personalCategory));
+        Category hobbyCategory = new Category();
+        hobbyCategory.setName("Loisirs");
+        exampleTasks.add(new Task(null, "Randonnée montagne", LocalDateTime.of(2025, 4, 15, 10, 00), "Faire une randonnée en montagne",hobbyCategory));
 
-        Category shoppingCategory = new Category();
-        shoppingCategory.setName("Shopping");
-        exampleTasks.add(new Task(null, "Task 3", LocalDateTime.now().plusDays(3), "Description for Task 3", shoppingCategory));
+        hobbyCategory.setName("Loisirs");
+        exampleTasks.add(new Task(null, "Jeux vidéos", LocalDateTime.of(2025, 2, 15, 13, 00), "Jouer à des jeux vidéos", hobbyCategory));
 
         model.addAttribute("exampleTasks", exampleTasks);
         return "home";
