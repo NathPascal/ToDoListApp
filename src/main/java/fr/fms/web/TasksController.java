@@ -2,6 +2,7 @@ package fr.fms.web;
 
 import fr.fms.dao.CategoryRepository;
 import fr.fms.dao.TaskRepository;
+import fr.fms.entities.Category;
 import fr.fms.entities.Task;
 import fr.fms.service.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,16 @@ public class TasksController {
     CategoryRepository categoryRepository;
 
     @GetMapping("/tasks")
-    public String tasks(Model model, @RequestParam(name = "keyword", defaultValue = "") String kw){
-        List<Task> tasks = taskRepository.findAll();
-        tasks = taskRepository.findByDescriptionContains(kw);
+    public String tasks(Model model, @RequestParam(name = "keyword", defaultValue = "") String kw,
+                        @RequestParam(name="categoryId", defaultValue = "0")Long categoryId){
+        List<Task> tasks;
+                if (categoryId > 0){
+                    Category category = categoryRepository.findById(categoryId).orElse(null);
+                    tasks = taskRepository.findByCategoryAndDescriptionContains(category, kw);
+                }else {
+        tasks = taskRepository.findByDescriptionContains(kw);}
 
+        model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("listTasks", tasks);
         model.addAttribute("keyword", kw);
 

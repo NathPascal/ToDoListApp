@@ -76,8 +76,8 @@
                 <ul>
                     <li th:each="category : ${categories}">
                         <a th:href="@{/tasks(categoryId=${category.id})}"
-                           th:text="${category.name}"
-                           th:class="${category.id == categoryId ? 'active' : ''}"></a>
+                           th:text="${category.name}">
+                           <!--th:class="${category.id == categoryId ? 'active' : ''}"--></a>
                     </li>
               </ul>
             </div>
