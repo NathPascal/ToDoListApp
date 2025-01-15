@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org" lang="fr">
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/nav"
+      layout:decorate="nav"
+      lang="fr">
 <head>
   <meta charset="UTF-8">
   <title>Accueil - ToDoList</title>
@@ -41,28 +44,30 @@
 </head>
 
 <body>
-<div class="container">
-  <h2>Bienvenue sur ToDoList</h2>
-  <p>Voici un exemple de tâches fictives :</p>
-  <table class="table table-bordered table-striped">
-    <thead>
-    <tr>
-      <th>Nom</th>
-      <th>Date</th>
-      <th>Description</th>
-      <th>Catégorie</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="task : ${exampleTasks}">
-      <td th:text="${task.name}"></td>
-      <td th:text="${task.dueDateTime}"></td>
-      <td th:text="${task.description}"></td>
-      <td th:text="${task.category.name}"></td>
-    </tr>
-    </tbody>
-  </table>
-  <a th:href="@{/tasks}" class="btn btn-primary">Voir toutes les tâches</a>
+<div layout:fragment="content">
+  <div class="container">
+    <h2>Bienvenue sur ToDoList</h2>
+    <p>Voici un exemple de tâches fictives :</p>
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Catégorie</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="task : ${exampleTasks}">
+        <td th:text="${task.name}"></td>
+        <td th:text="${task.dueDateTime}"></td>
+        <td th:text="${task.description}"></td>
+        <td th:text="${task.category.name}"></td>
+      </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/tasks}" class="btn btn-primary">Voir toutes les tâches</a>
+  </div>
 </div>
 </body>
 </html>

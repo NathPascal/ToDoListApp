@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org" lang="fr">
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/nav"
+      layout:decorate="nav"
+      lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>ToDoList</title>
@@ -98,6 +101,7 @@
 </head>
 
 <body>
+<div layout:fragment="content">
 <div class="container">
     <h2><a th:href="@{/tasks}" style="text-decoration: none; color: inherit;">TO-DO LIST</a></h2>
     <div class="row">
@@ -152,6 +156,7 @@
             </table>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/nav"
+      lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>navigation</title>
+  <link rel="stylesheet" href="../static/bootstrap.min.css" th:href="@{bootstrap.min.css}">
+  <style>
+    body {
+        background-color: #B0C4DE;
+        font-family: 'Arial', sans-serif;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    .table {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .table thead {
+        background-color: #007bff;
+        color: white;
+    }
+    .table td, .table th {
+        vertical-align: middle;
+    }
+    .table-bordered td, .table-bordered th {
+        border: 1px solid #dee2e6;
+    }
+    .table-bordered {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f2f2f2;
+    }
+    .category-list {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .category-list h4 {
+        color: #495057;
+    }
+    .category-list ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .category-list li {
+        margin-bottom: 10px;
+    }
+    .category-list a {
+        text-decoration: none;
+        color: #007bff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        display: block;
+    }
+    .category-list a.active {
+        background-color: #007bff;
+        color: white;
+    }
+    .category-list a:hover {
+        background-color: #0056b3;
+        color: white;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand">Le site ToDoList🧾</a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/home}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/tasks}">ToDoList</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div layout:fragment="content"></div>
+</div>
+
+<script src="../static/bootstrap.bundle.min.js" th:src="@{bootstrap.bundle.min.js}"></script>
+</body>
+</html>
