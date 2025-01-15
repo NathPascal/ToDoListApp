@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TasksService {
@@ -22,6 +23,11 @@ public class TasksService {
 
     public void delete(Long id) {
         taskRepository.deleteById(id);
+    }
+
+    public Task getTaskById(Long id) {
+        Optional<Task> taskOptional = taskRepository.findById(id);
+        return taskOptional.orElse(null);
     }
 }
 

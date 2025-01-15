@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>mise à jour tâche</title>
+</head>
+
+<body>
+  <div class="col-md-4 col-xs-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">Mettre à jour une tâche</div>
+      <div class="panel-body">
+        <form th:action="@{/saveTask}" method="post">
+            <div class="form-group">
+                <label class="control-label"> Id :  </label> <label th:text=${task.id}></label>
+                <input class="form-control" type="hidden" name="id" th:value="${task.id}">
+            </div>
+            <div class ="form-group">
+              <label class="control-panel">Intitulé</label>
+              <input type="text" name="name" th:value="${task.name}" class="form-control"/>
+              <span th:errors="${task.name}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Date et heure</label>
+              <input type="datetime-local" name="dueDateTime" th:value="${task.dueDateTime}" class="form-control"/>
+              <span th:errors="${task.dueDateTime}" class="text-danger"></span>
+            </div>
+            <div class = "form-group">
+              <label class="control-label">Description</label>
+              <input type="text" name="description" th:value="${task.description}" class="form-control"/>
+              <span th:errors="${task.description}" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Sauvegarder</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class TasksController {
@@ -47,5 +48,15 @@ public class TasksController {
     public String delete(@RequestParam Long id){
         tasksService.delete(id);
         return "redirect:/tasks";
+    }
+
+    @GetMapping("/edit")
+    public String edit (Model model, @RequestParam Long id) {
+        Task task = tasksService.getTaskById(id);
+        if (task == null) {
+            return "redirect:/tasks";
+        }
+        model.addAttribute("task", task);
+        return "edit";
     }
 }
