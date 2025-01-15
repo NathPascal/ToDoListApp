@@ -23,9 +23,12 @@ public class TasksController {
     TaskRepository taskRepository;
 
     @GetMapping("/tasks")
-    public String tasks(Model model){
+    public String tasks(Model model, @RequestParam(name = "keyword", defaultValue = "") String kw){
         List<Task> tasks = taskRepository.findAll();
+        tasks = taskRepository.findByDescriptionContains(kw);
+
         model.addAttribute("listTasks", tasks);
+        model.addAttribute("keyword", kw);
 
         return "tasks";
     }

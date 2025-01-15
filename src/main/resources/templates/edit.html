@@ -12,19 +12,13 @@
             background-color: #B0C4DE;
             font-family: 'Arial', sans-serif;
         }
-        .panel {
-            border-radius: 10px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .container {
             margin-top: 50px;
+            max-width: 600px;
         }
-        .panel-heading {
-            background-color: #007bff;
-            color: white;
+        h2 {
             text-align: center;
-            padding: 10px;
-            font-size: 1.2em;
-        }
+            color: #495057;
         .form-group label {
             font-weight: bold;
         }
@@ -40,39 +34,32 @@
 </head>
 <body>
 <div class="container">
-    <div class="col-md-6 col-xs-12 offset-md-3">
-        <div class="panel">
-            <div class="panel-heading">Modifications de la tâche</div>
-            <div class="panel-body">
-                <form th:action="@{/saveTask}" method="post">
-                    <div class="form-group mb-3">
-                        <label class="control-label">ID :</label>
-                        <label th:text="${task.id}"></label>
-                        <input class="form-control" type="hidden" name="id" th:value="${task.id}">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="control-label" for="name">Intitulé</label>
-                        <input type="text" id="name" name="name" th:value="${task.name}" class="form-control" placeholder="Nom de la tâche">
-                        <span th:errors="${task.name}" class="text-danger"></span>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="control-label" for="dueDateTime">Date et heure</label>
-                        <input type="datetime-local" id="dueDateTime" name="dueDateTime" th:value="${task.dueDateTime}" class="form-control">
-                        <span th:errors="${task.dueDateTime}" class="text-danger"></span>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="control-label" for="description">Description</label>
-                        <input type="text" id="description" name="description" th:value="${task.description}" class="form-control" placeholder="Description de la tâche">
-                        <span th:errors="${task.description}" class="text-danger"></span>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Sauvegarder</button>
-                </form>
-            </div>
+    <h2>Modifications de la tâche</h2>
+    <form th:action="@{/saveTask}" method="post">
+        <div class="form-group mb-3">
+            <label class="control-label">ID :</label>
+            <label th:text="${task.id}"></label>
+            <input class="form-control" type="hidden" name="id" th:value="${task.id}">
         </div>
-    </div>
+        <div class="form-group mb-3">
+            <label class="control-label" for="name">Intitulé</label>
+            <input type="text" id="name" name="name" th:value="${task.name}" class="form-control" placeholder="Nom de la tâche">
+            <span th:errors="${task.name}" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label class="control-label" for="dueDateTime">Date et heure</label>
+            <input type="datetime-local" id="dueDateTime" name="dueDateTime" th:value="${task.dueDateTime}" class="form-control">
+            <span th:errors="${task.dueDateTime}" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label class="control-label" for="description">Description</label>
+            <input type="text" id="description" name="description" th:value="${task.description}" class="form-control" placeholder="Description de la tâche">
+            <span th:errors="${task.description}" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Sauvegarder</button>
+    </form>
 </div>
 
-<!-- Inclusion de Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
