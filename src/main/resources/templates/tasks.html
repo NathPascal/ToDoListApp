@@ -63,12 +63,43 @@
         .table-striped tbody tr:nth-of-type(odd) {
             background-color: #f2f2f2;
         }
+        .category-list {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .category-list h4 {
+            color: #495057;
+        }
+        .category-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .category-list li {
+            margin-bottom: 10px;
+        }
+        .category-list a {
+            text-decoration: none;
+            color: #007bff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: block;
+        }
+        .category-list a.active {
+            background-color: #007bff;
+            color: white;
+        }
+        .category-list a:hover {
+            background-color: #0056b3;
+            color: white;
+        }
     </style>
 </head>
 
 <body>
 <div class="container">
-    <h2>TO-DO LIST</h2>
+    <h2><a th:href="@{/tasks}" style="text-decoration: none; color: inherit;">TO-DO LIST</a></h2>
     <div class="row">
         <div class="col-md-3">
             <div class="category-list">
@@ -76,10 +107,10 @@
                 <ul>
                     <li th:each="category : ${categories}">
                         <a th:href="@{/tasks(categoryId=${category.id})}"
-                           th:text="${category.name}">
-                           <!--th:class="${category.id == categoryId ? 'active' : ''}"--></a>
+                           th:text="${category.name}"
+                           th:classappend="${category.id == categoryId} ? 'active' : ''"></a>
                     </li>
-              </ul>
+                </ul>
             </div>
         </div>
         <div class="col-md-9">
@@ -111,6 +142,7 @@
                     <td th:text="${task.name}"></td>
                     <td th:text="${task.dueDateTime}"></td>
                     <td th:text="${task.description}"></td>
+                    <td th:text="${task.category?.name}"></td>
                     <td>
                         <a th:href="@{/delete(id=${task.id})}" class="btn btn-danger">Delete</a>
                         <a th:href="@{/edit(id=${task.id})}" class="btn btn-success">Edit</a>

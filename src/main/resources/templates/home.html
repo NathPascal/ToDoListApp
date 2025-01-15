@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Accueil - ToDoList</title>
+  <link rel="stylesheet" href="../static/bootstrap.min.css" th:href="@{bootstrap.min.css}">
+  <style>
+    body {
+        background-color: #B0C4DE;
+        font-family: 'Arial', sans-serif;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    h2 {
+        text-align: center;
+        color: #495057;
+    }
+    .table {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .table thead {
+        background-color: #007bff;
+        color: white;
+    }
+    .table td, .table th {
+        vertical-align: middle;
+    }
+    .table-bordered td, .table-bordered th {
+        border: 1px solid #dee2e6;
+    }
+    .table-bordered {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f2f2f2;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <h2>Bienvenue sur ToDoList</h2>
+  <p>Voici un exemple de tâches fictives :</p>
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Catégorie</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task : ${exampleTasks}">
+      <td th:text="${task.name}"></td>
+      <td th:text="${task.dueDateTime}"></td>
+      <td th:text="${task.description}"></td>
+      <td th:text="${task.category.name}"></td>
+    </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/tasks}" class="btn btn-primary">Voir toutes les tâches</a>
+</div>
+</body>
+</html>
