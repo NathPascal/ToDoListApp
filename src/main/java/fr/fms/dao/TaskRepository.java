@@ -4,11 +4,13 @@ import fr.fms.entities.Category;
 import fr.fms.entities.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
-    List<Task> findByDescriptionContains(String kw);
+    Page<Task> findByDescriptionContains(String kw, Pageable pageable);
 
-    List<Task> findByCategoryAndDescriptionContains(Category category, String kw);
+    Page<Task> findByCategoryAndDescriptionContains(Category category, String kw, Pageable pageable);
 }
