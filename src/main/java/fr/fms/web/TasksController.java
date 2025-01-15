@@ -1,5 +1,6 @@
 package fr.fms.web;
 
+import fr.fms.dao.CategoryRepository;
 import fr.fms.dao.TaskRepository;
 import fr.fms.entities.Task;
 import fr.fms.service.TasksService;
@@ -22,6 +23,9 @@ public class TasksController {
     @Autowired
     TaskRepository taskRepository;
 
+    @Autowired
+    CategoryRepository categoryRepository;
+
     @GetMapping("/tasks")
     public String tasks(Model model, @RequestParam(name = "keyword", defaultValue = "") String kw){
         List<Task> tasks = taskRepository.findAll();
@@ -35,8 +39,8 @@ public class TasksController {
 
     @GetMapping("/addNewTask")
     public String addNewTask(Model model){
-        Task task = new Task();
-        model.addAttribute("task", task);
+        model.addAttribute("task", new Task());
+        model.addAttribute("categories", tasksService.getCategories());
         return "task";
     }
 
@@ -60,6 +64,7 @@ public class TasksController {
             return "redirect:/tasks";
         }
         model.addAttribute("task", task);
+        model.addAttribute("categories", tasksService.getCategories());
         return "edit";
     }
 }

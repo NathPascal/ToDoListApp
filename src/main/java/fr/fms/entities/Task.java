@@ -7,8 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Data
@@ -33,11 +31,12 @@ public class Task {
 
     public Task() {}
 
-    public Task(Long id, String name, LocalDateTime dueDateTime, String description) {
+    public Task(Long id, String name, LocalDateTime dueDateTime, String description, Category category) {
         this.id = id;
         this.name = name;
         this.dueDateTime = dueDateTime;
         this.description = description;
+        this.category = category;
     }
 
 
@@ -72,5 +71,10 @@ public class Task {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Category getCategory() {return category;}
+
+    public void setCategory(Category category) {this.category = category;}
+
 
 }

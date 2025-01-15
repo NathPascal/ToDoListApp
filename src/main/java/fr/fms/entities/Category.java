@@ -21,11 +21,25 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private Collection<Task> tasks;
 
-    public Category(){}
+//    public Category(){}
+//
+//    public Category(Long id, String name){
+//        this.id = id;
+//        this.name = name;
+//    }
+public Long getId() {
+    return id;
+}
 
-    public Category(Long id, String name){
+    public void setId(Long id) {
         this.id = id;
-        this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
