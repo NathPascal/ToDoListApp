@@ -1,52 +1,60 @@
 package fr.fms;
 
+import fr.fms.dao.CategoryRepository;
+import fr.fms.dao.TaskRepository;
+import fr.fms.entities.Category;
 import fr.fms.entities.Task;
 import fr.fms.service.TasksService;
 import fr.fms.web.TasksController;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-public class TasksControllerTests {
+@WebMvcTest(TasksController.class)
+class TasksControllerTests {
 
-//    private MockMvc mockMvc;
-//
-//    @Mock
-//    private TasksService tasksService;
-//
-//    @InjectMocks
-//    private TasksController tasksController;
-//
-//    @BeforeEach
-//    public void setUp(){
-//        MockitoAnnotations.openMocks(this);
-//        mockMvc = MockMvcBuilders.standaloneSetup(tasksController).build();
-//    }
-//
-//    @Test
-//    public void testSaveTask() throws Exception {
-//        Task task = new Task(null, "Task 1", LocalDateTime.of(2025, 3, 15, 10, 30), "Description 1");
-//
-//        mockMvc.perform(post("/saveTask")
-//                        .param("name", task.getName())
-//                        .param("description", task.getDescription())
-//                        .param("dueDate", task.getDueDate().toString()))
-//                .andExpect(status().is3xxRedirection())
-//                .andExpect(redirectedUrl("/tasks"));
-//
-//        verify(tasksService, times(1)).saveTask(any(Task.class));
-//    }
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private TasksService tasksService;
+
+    @MockBean
+    private TaskRepository taskRepository;
+
+    @MockBean
+    private CategoryRepository categoryRepository;
+
+    @Test
+    void testGetTasks() throws Exception {
+        when(categoryRepository.findAll()).thenReturn(List.of(new Category(null, "Travail")));
+        when(taskRepository.findByDescriptionContains(anyString(), any(PageRequest.class)))
+                .thenReturn(new PageImpl<>
+                        (List.of(new Task(null, "Réunion de travail",
+                                LocalDateTime.of(2025, 4, 12, 14, 00),
+                                "Présentation du projet", new Category(null, "travail")))));
+
+        this.mockMvc.perform(get("/tasks")
+                        .param("keyword", "projet")
+                        .param("page", "0"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("listTasks"))
+                .andExpect(model().attributeExists("categories"))
+                .andExpect(view().name("tasks"));
+
+    }
 }
