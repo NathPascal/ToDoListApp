@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 
 import static org.junit.Assert.assertEquals;
 
+// vérifier la sauvegarde et la récupération des tâches
+
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class ToDoListJpasTests {

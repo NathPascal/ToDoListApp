@@ -23,6 +23,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+// test pour vérifier si la page tasks est correctement renvoyée avec un mot-clé spécifique.
+
 @WebMvcTest(TasksController.class)
 class TasksControllerTests {
 
