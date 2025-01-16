@@ -32,4 +32,10 @@ public class HomeController {
         model.addAttribute("exampleTasks", exampleTasks);
         return "home";
     }
+
+    @GetMapping("/403")
+    public String error(){
+        return "403";
+    }
+    
 }

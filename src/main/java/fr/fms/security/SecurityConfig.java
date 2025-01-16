@@ -27,12 +27,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .usersByUsernameQuery("select username as principal, password as credentials, active from T_Users where username=?")
-                .authoritiesByUsernameQuery("select username as principal, role as role from T_Users_Roles where username=?")
-                .rolePrefix("ROLE_")
-                .passwordEncoder(passwordEncoder());
+        PasswordEncoder pe = passwordEncoder();
+        auth.inMemoryAuthentication().withUser("paul").password(pe.encode("12345")).roles("USER");
+        auth.inMemoryAuthentication().withUser("julie").password(pe.encode("12345")).roles("USER");
+        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder());
+
+//        auth.jdbcAuthentication()
+//                .dataSource(dataSource)
+//                .usersByUsernameQuery("select username as principal, password as credentials, active from T_Users where username=?")
+//                .authoritiesByUsernameQuery("select username as principal, role as role from T_Users_Roles where username=?"
+//                .rolePrefix("ROLE_")
+//                .passwordEncoder(passwordEncoder());
     }
 
 
