@@ -15,5 +15,20 @@ pertinente.</p>
 
 ![img.png](Diagrams/img.png)
 
+<h1>Spécifications fonctionnelles</h1>
+<p>Pour le visiteur du site, l'appli permet:<br>
+.Afficher la page d'accueil qui montre des exemples de tâches.<br>
+.Se connecter<br>
+Pour l'utilisateur connecté, l'appli permet en plus: <br>
+.Afficher la page des tâches personnalisées et leurs catégories<br>
+.Ajouter une tâche <br>
+.Supprimer une tâche<br>
+.Modifier une tâche<br>
+.Rechercher par mot-clé<br>
+.Sélectionner une catégorie spécifique<br>
+</p>
 
-
+<h1>Spécifications techniques</h1>
+<p>-> Spring Boot 2.6.0/Spring Data Jpa Hibernate/Spring Mvc/Thymeleaf/Lombok<br>
+-> Java 11/IntelliJ Community/SGBD MariaDB/BootStrap
+</p>
