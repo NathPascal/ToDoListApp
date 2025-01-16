@@ -9,11 +9,13 @@ Une tâche doit être définie par : nom, date, description et toute autre infor
 pertinente.</p>
 
 <h4>Use case : </h4> 
-![useCase.png](Diagrams/useCase.png)
+ voir Diagrams/useCase.png
 
 <h4> Class Diagram : </h4>
+voir Diagrams/ClassDiagram.png
 
-![img.png](Diagrams/img.png)
+<h4> Sequence Diagram : </h4>
+voir Diagrams/sequenceDiagram.png
 
 <h1>Spécifications fonctionnelles</h1>
 <p>Pour le visiteur du site, l'appli permet:<br>
@@ -32,3 +34,7 @@ Pour l'utilisateur connecté, l'appli permet en plus: <br>
 <p>-> Spring Boot 2.6.0/Spring Data Jpa Hibernate/Spring Mvc/Thymeleaf/Lombok<br>
 -> Java 11/IntelliJ Community/SGBD MariaDB/BootStrap
 </p>
+
+<h4>Maquette : </h4>
+voir Diagrams/maquette.png
+
